@@ -26,64 +26,19 @@
 #include <opencv2/opencv.hpp>
 #else
 // Versió 2 i 3 : #elif CV_MAJOR_VERSION == 3 ...
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/opencv.hpp>
-#endif
-using namespace cv;  // The new C++ interface API is inside this namespace. Import it.
-using namespace std; // para que "string" sea un tipo
-
-#else
-//__STDC__
-#include <cv.h>
-#include <cxcore.h>
-#include <highgui.h>
-#endif
-
-//#ifdef __cplusplus
-// Les capsaleres canvien en la V4 d'OpencV, ho comprovem
-#if CV_VERSION_MAJOR == 4
-#include "opencv2/imgcodecs.hpp"
-#include "opencv2/highgui.hpp"
-//#else
-//// En la V3 d'OpencV
-#include <opencv2/opencv.hpp>
-using namespace cv;  // The new C++ interface API is inside this namespace. Import it.
-using namespace std; // para que "string" sea un tipo
-
-#else
-//__STDC__
-// En la V2 d'OpencV
-#include <cv.h>
-#include <cxcore.h>
-#include <highgui.h>
-#endif
-
-/*
-//#ifdef __cplusplus
-// Les capsaleres canvien en la V4 d'OpencV, ho comprovem
-#if CV_VERSION_MAJOR == 4
-#include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
-#include <opencv2/opencv.hpp>
-using namespace cv;  // The new C++ interface API is inside this namespace. Import it.
-using namespace std; // para que "string" sea un tipo
-
-#elif CV_MAJOR_VERSION == 3 
-#include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/opencv.hpp>
+#endif
 using namespace cv;  // The new C++ interface API is inside this namespace. Import it.
 using namespace std; // para que "string" sea un tipo
 
 #else
 //__STDC__
-// En la V2 d'OpencV
 #include <cv.h>
 #include <cxcore.h>
 #include <highgui.h>
 #endif
-*/
 
 #include <AL/alut.h>
 #include <math.h>
@@ -116,6 +71,8 @@ ALfloat fontsAudioVel[]={ 0.0, 0.0, 0.0};
 #define TRUE 1
 #define FALSE 0
 #define ESC 27
+
+cv::VideoCapture cap;
 
 
 void inicializarAudio(){
@@ -196,8 +153,7 @@ int main( int argc, char** argv )
   Mat roiFrame, roiBitImage;
   int width, height;
   Rect rectGeneral;
-  //  CvCapture* capture = 0;
-  VideoCapture capture = 0;
+  //VideoCapture capture = 0;
   int fullScreenMode = FALSE, 
       umbralMoviment, quantitatMoviment,
       nPuntsCanviats;
@@ -205,13 +161,15 @@ int main( int argc, char** argv )
 
 
   if( argc == 1 || (argc == 2 && strlen(argv[1]) == 1 && isdigit(argv[1][0])))
-    capture.open( argc == 2 ? argv[1][0] - '0' : 0 );
+    //capture.open( argc == 2 ? argv[1][0] - '0' : 0 );
+    cap.open( argc == 2 ? argv[1][0] - '0' : 0 );
   else if( argc == 2 )
-    capture.open( argv[1] );
+    //capture.open( argv[1] );
+    cap.open( argv[1] );
 
-  if( !capture.isOpened() )
+  if( !cap.open(0) )
     {
-      fprintf(stderr,"No se pudo iniciar la captura...\n");
+      std::cerr << "Error: No se pudo abrir la cámara." << std::endl;
       return -1;
     }
 
@@ -227,9 +185,12 @@ int main( int argc, char** argv )
   umbralMoviment = 80;
   quantitatMoviment = 10;
   
-  capture.read( frame ); //Need to get correct data
-  width = capture.get( CAP_PROP_FRAME_WIDTH );
-  height = capture.get( CAP_PROP_FRAME_HEIGHT );
+ // capture.read( frame ); //Need to get correct data
+  cap.read( frame ); //Need to get correct data
+  //width = capture.get( CAP_PROP_FRAME_WIDTH );
+  width = cap.get( CAP_PROP_FRAME_WIDTH );
+  //height = capture.get( CAP_PROP_FRAME_HEIGHT );
+  height = cap.get( CAP_PROP_FRAME_HEIGHT );
   printf("Dispositivo abierto de %dx%d píxeles\n", width, height);
   printf("frame de  %dx%d píxeles\n", frame.cols, frame.rows);
   printf("Máxima cantidad de movimiento %dx%d = %d\n",
@@ -275,12 +236,12 @@ int main( int argc, char** argv )
   while ( !salir )
   {
       //capture.read( frame );
-      if ( !capture.grab() ) { // Congela la imatge a la càmera
+      if ( !cap.grab() ) { // Congela la imatge a la càmera
 	salir = true; 
 	break;
       }
       else {
-        capture.retrieve(frame, 0 ); // Decodes and returns the grabbed video frame.
+        cap.retrieve(frame, 0 ); // Decodes and returns the grabbed video frame.
       }
       
       //Convert frame to gray and store in image
