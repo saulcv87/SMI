@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/openjdk21">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Trab_agencia"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Trab_difusion"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icestorm-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icessl-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icepatch2-compat-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icepatch2-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icelocatordiscovery-compat-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icegrid-compat-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icegrid-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icediscovery-compat-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/ice-compat-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icebt-compat-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icebt-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icebox-compat-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/icebox-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/ice-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/glacier2-compat-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/glacier2-3.7.10.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Servers/ICE_libs/freeze-3.6.5.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/psd/Tools/activemq/activemq-all-5.18.2.jar"/>
+	<classpathentry kind="lib" path="/home/saulcv87/Descargas/agencia_robots_material/agencia_robots_material/khepera.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
